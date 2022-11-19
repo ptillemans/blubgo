@@ -2,7 +2,6 @@ package ds1820
 
 import (
 	"errors"
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -22,8 +21,6 @@ func readTemperatureSensor(reader Reader) (float64, error) {
 	r, _ := regexp.Compile(".* t=(.*)")
 	for _, line := range lines {
 		match := r.FindStringSubmatch(line)
-		fmt.Println(line)
-		fmt.Println(match)
 		if len(match) > 1 {
 			temp, err := strconv.ParseFloat(match[1], 64)
 			return temp / 1000, err
